@@ -1,41 +1,60 @@
 import logo from './logo.svg';
 import './App.css';
 
+import React, { useState } from "react";
+
 function App() {
-    const handleClick = () => {
-        alert("Welcome to my React App! 🚀");
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [submitted, setSubmitted] = useState(false);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setSubmitted(true);
     };
 
     return ( <
-        div className = "App" >
-        <
-        header className = "App-header" >
-        <
-        img src = { logo }
-        className = "App-logo"
-        alt = "logo" / >
-        <
-        p > Welcome to my first React App!Let 's build something amazing. ✨</p>
-
-        <
-        button onClick = { handleClick }
-        style = {
-            { padding: "10px 20px", fontSize: "16px", cursor: "pointer" }
-        } >
-        Click Me <
-        /button>
-
-        <
-        a className = "App-link"
-        href = "https://developer.mozilla.org/en-US/docs/Learn/JavaScript"
-        target = "_blank"
-        rel = "noopener noreferrer" >
-        Learn JavaScript
-        for React <
-        /a> < /
-        header > <
+            div >
+            <
+            h1 > Form Example < /h1> {!submitted ? ( <
+                form onSubmit = { handleSubmit } >
+                <
+                label >
+                Name:
+                <
+                input type = "text"
+                value = { name }
+                onChange = {
+                    (e) => setName(e.target.value)
+                }
+                /> < /
+                label > <
+                br / >
+                <
+                label >
+                Email:
+                <
+                input type = "email"
+                value = { email }
+                onChange = {
+                    (e) => setEmail(e.target.value)
+                }
+                /> < /
+                label > <
+                br / >
+                <
+                button type = "submit" > Submit < /button> < /
+                form >
+            ) : ( <
+                div >
+                <
+                h2 > Form Submitted! < /h2> <
+                p > Name: { name } < /p> <
+                p > Email: { email } < /p> < /
+                div >
+            )
+        } <
         /div>
-    );
+);
 }
-
 export default App;

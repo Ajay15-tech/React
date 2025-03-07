@@ -1,41 +1,14 @@
-import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
-import Login from "./Login";
-import ProductCatalogue from "./ProductCatalogue";
-import "./studies.css";
+import React from "react";
+import DragAndDropList from "./DragAndDrop/DragAndDrop"; // Ensure the path is correct
 
 function App() {
     return ( <
-        Router >
+        div className = "App" >
         <
-        div className = "container" >
+        h1 className = "text-center fs-2 p-2 my-2 bg-secondary text-white" > My Drag and Drop Project < /h1> <
+        DragAndDropList / >
         <
-        nav >
-        <
-        ul >
-        <
-        li > < NavLink to = "/"
-        className = {
-            ({ isActive }) => isActive ? "active" : "" } > Login < /NavLink></li >
-        <
-        li > < NavLink to = "/products"
-        className = {
-            ({ isActive }) => isActive ? "active" : "" } > Products < /NavLink></li >
-        <
-        /ul> <
-        /nav>
-
-        <
-        Routes >
-        <
-        Route path = "/"
-        element = { < Login / > }
-        /> <
-        Route path = "/products"
-        element = { < ProductCatalogue / > }
-        /> <
-        /Routes> <
-        /div> <
-        /Router>
+        /div>
     );
 }
 

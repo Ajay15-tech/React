@@ -1,43 +1,72 @@
-import React, { Suspense } from "react";
-import { ThemeProvider, useTheme } from "./ThemeContext";
-
-// Lazy load the components
-const About = React.lazy(() =>
-    import ("./About"));
-const Contact = React.lazy(() =>
-    import ("./Contact"));
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Home from './Home';
+import About from './About';
+import Contact from './Contact';
+import Post from './Post';
+import NotFound from './NotFound';
+import './App.css';
 
 const App = () => {
-        return ( <
-            ThemeProvider >
-            <
-            Suspense fallback = { < div > Loading... < /div>}> <
-                Home / >
-                <
-                /Suspense> <
-                /ThemeProvider>
-            );
-        };
+    const [theme, setTheme] = useState('light'); // Default to light theme
 
-        const Home = () => {
-                const { theme, toggleTheme } = useTheme();
+    // Toggle theme
+    const toggleTheme = () => {
+        setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+    };
 
-                return ( <
-                        div >
-                        <
-                        h1 > Welcome to the { theme }
-                        theme! < /h1> <
-                        button onClick = { toggleTheme } > Toggle Theme < /button> <
-                        Suspense fallback = { < div > Loading about section... < /div>}> <
-                            About / >
-                            <
-                            /Suspense> <
-                            Suspense fallback = { < div > Loading contact section... < /div>}> <
-                                Contact / >
-                                <
-                                /Suspense> <
-                                /div>
-                            );
-                        };
+    useEffect(() => {
+        // Add the current theme class to the body when the component mounts or theme changes
+        document.body.className = `${theme}-theme`;
+    }, [theme]);
 
-                        export default App;
+    return ( <
+        Router >
+        <
+        div >
+        <
+        nav >
+        <
+        ul >
+        <
+        li > < Link to = "/" > Home < /Link></li >
+        <
+        li > < Link to = "/about" > About < /Link></li >
+        <
+        li > < Link to = "/contact" > Contact < /Link></li >
+        <
+        li > < button onClick = { toggleTheme } > Toggle Theme < /button></li > { /* Toggle Button */ } <
+        /ul> <
+        /nav>
+
+        <
+        Routes >
+        <
+        Route path = "/"
+        element = { < Home / > }
+        /> <
+        Route path = "/about"
+        element = { < About / > }
+        /> <
+        Route path = "/contact"
+        element = { < Contact / > }
+        /> <
+        Route path = "/post/:id"
+        element = { < Post / > }
+        /> <
+        Route path = "*"
+        element = { < NotFound / > }
+        /> <
+        /Routes>
+
+        <
+        footer >
+        <
+        p > My React Dynamic App & copy; 2025 < /p> <
+        /footer> <
+        /div> <
+        /Router>
+    );
+};
+
+export default App;

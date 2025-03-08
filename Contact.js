@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 
 const Contact = () => {
     return ( <
         div >
         <
-        h2 > Contact Page < /h2> <
-        p > This is the contact page. < /p> < /
-        div >
+        h1 > Contact Us < /h1> <
+        p > You can contact us at contact @example.com. < /p> <
+        /div>
     );
 };
 

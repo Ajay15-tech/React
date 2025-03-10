@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
 const About = () => {
     return ( <
         div >
         <
-        h2 > About Page < /h2> <
-        p > This is the about page. < /p> <
+        h1 > About Us < /h1> <
+        p > This is a demo app that shows how to create dynamic pages using React and React Router. < /p> <
         /div>
     );
 };
